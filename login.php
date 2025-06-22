@@ -23,7 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     {
         if ($result->num_rows > 0)
         {
-            
+            // Ustawienie flagi zalogowania
+            $_SESSION['loggedIn'] = true; 
+            // Pobranie danych użytkownika
             if ($userData = $connection->query($sql2))
             {
                 $userData = $userData->fetch_assoc();
@@ -43,14 +45,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                 echo "Błąd pobierania danych użytkownika: " . $connection->error;
                 exit();
             }
-    
+            unset($_SESSION['error']); // Usunięcie błędu, jeśli był ustawiony
+            // Ustawienie ciasteczka na 30 dni
+            setcookie("user", $userData['Login'], time() + (30 * 24 * 60 * 60), "/"); // Ciasteczko ważne przez 30 dni
             // Przekierowanie do gry
             $result->free();
             header("Location: game.php");
         }
         else
         {
-            echo "Nieprawidłowy login lub hasło.";
+            $_SESSION['error'] = "<span style='color:red;'>Nieprawidłowy login lub hasło.</span>";
+            $result->free();
+            header("Location: index.php");
         }
 
     }

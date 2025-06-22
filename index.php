@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -11,13 +15,17 @@
         <h1>Osadnicy</h1>
     </header>
     <main>
-        <p>Witaj w grze Osadnicy! Wybierz jedną z opcji poniżej:</p>
+        <p>Witaj w grze Osadnicy! Zaloguj się!</p>
         <form action="login.php" method="post">
             Login: <br> <input type="text" name="login" required><br><br>
             Hasło: <br> <input type="password" name="password" required><br><br>
             <input type="submit" value="Zaloguj się">
         </form>
-        
+        <?php
+        if (isset($_SESSION['error'])) {
+            echo $_SESSION['error'];
+        }
+        ?>
     </main>
     <footer>
         <p>&copy; 2025 Osadnicy. Wszelkie prawa zastrzeżone.</p>

@@ -23,8 +23,6 @@
         echo "<li>Zboże: " . $_SESSION['cereal'] . "</li>";
         if($_SESSION ['isActive']) echo "<li>Subskrypcja Premium: Aktywna"  . "</li>";
         echo "</ul>";
-
-
     ?>
 </body>    
     <footer>
