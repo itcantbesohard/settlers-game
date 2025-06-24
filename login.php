@@ -2,14 +2,10 @@
 <?php
 session_start();
 
-if (isset($_POST['login']) && isset($_POST['password']))
+if (!isset($_POST['login']) || !isset($_POST['password']))
 {
-    // Sprawdzenie, czy użytkownik jest już zalogowany
-    if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true)
-    {
-        header("Location: game.php");
-        exit();
-    }
+    header("Location: index.php");
+    exit();
 }
 
 require_once 'connect.php';
