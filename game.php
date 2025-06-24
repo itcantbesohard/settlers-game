@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if (!isset($_SESSION['user'])) {
+    if (!isset($_SESSION['loggedIn'])) {
         header("Location: index.php");
         exit();
     }
@@ -23,6 +23,9 @@
         echo "<li>Zboże: " . $_SESSION['cereal'] . "</li>";
         if($_SESSION ['isActive']) echo "<li>Subskrypcja Premium: Aktywna"  . "</li>";
         echo "</ul>";
+
+        echo "<p><a href='logout.php'>Wyloguj się</a></p>";
+
     ?>
 </body>    
     <footer>

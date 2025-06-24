@@ -1,7 +1,12 @@
 <?php
 session_start();
-?>
 
+if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true)
+{
+    header("Location: game.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
